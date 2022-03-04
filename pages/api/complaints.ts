@@ -2,36 +2,15 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Client } from "@notionhq/client";
 import dotenv from "dotenv";
-
+import { capFirst } from "../../lib/util";
 dotenv.config();
 
 const notion = new Client({ auth: process.env.NOTION_KEY });
-const database_id: string = process.env.NOTION_DATABASE_ID
+const database_id = process.env.NOTION_DATABASE_ID
   ? process.env.NOTION_DATABASE_ID
   : "please specify a database";
 
-async function getOptions() {
-  const database = await notion.databases.retrieve({
-    database_id: database_id,
-  });
-
-  const properties = database.properties;
-  const type_options = properties["Type"]["select"].options.reduce(
-    (obj, property) => {
-      const { name, ...rest } = property;
-      return { ...obj, [name]: rest };
-    },
-    {}
-  );
-  const about_options = properties["About"]["select"].options.reduce(
-    (obj, property) => {
-      const { name, ...rest } = property;
-      return { ...obj, [name]: rest };
-    },
-    {}
-  );
-  return { type_options, about_options };
-}
+import { getOptions } from "./option";
 
 type Complain = {
   title: string;
@@ -100,10 +79,10 @@ async function createComplain(complain: Complain) {
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     createComplain({
-      title: req.body.title,
-      type: req.body.type,
-      about: req.body.about,
-      desc: req.body.desc,
+      title: capFirst(req.body.title),
+      type: capFirst(req.body.type),
+      about: capFirst(req.body.about),
+      desc: capFirst(req.body.desc),
     })
       .then(res.json)
       .catch(res.json);
