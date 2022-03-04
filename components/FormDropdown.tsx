@@ -1,28 +1,34 @@
 type OptionProps = {
-  options: Array<String>;
+  options: Array<string>;
+  name: string;
+  side: string;
 };
 
-export default function FormDropdown({ options }: OptionProps) {
+export default function FormDropdown({ options, name, side }: OptionProps) {
   return (
-    <select
-      name="complain-type"
-      id="complain-type"
-      className="
+    <div className="container">
+      <select
+        name={name}
+        id={name}
+        className={`
+        md:w-[40%]
         py-2
         focus:ring-indigo-500 
         focus:border-indigo-500 
-        flex-1 block font-medium
-        rounded-md 
+        flex-1 font-medium
+        rounded-${side}md 
+        md:w-full
         sm:text-sm 
         shadow-md
       border-gray-800
       bg-gray-700
-      "
-      required
-    >
-      {options.map((item) => (
-        <option value={item.toLowerCase()}>{item}</option>
-      ))}
-    </select>
+      `}
+        required
+      >
+        {options.map((item) => (
+          <option value={item.toLowerCase()}>{item}</option>
+        ))}
+      </select>
+    </div>
   );
 }

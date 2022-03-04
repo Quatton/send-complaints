@@ -1,15 +1,11 @@
-type SizeProp = {
-  width: Number;
-  height: Number;
-};
-
-export default function FormTextField({ width, height }: SizeProp) {
+export default function FormTextField() {
   return (
     <textarea
       id="complain"
+      name="complain"
       placeholder="Feel free to express your opinion!"
       className={`
-          resize-none w-[${width}] md:w-[50vw] h-[${height}ch] py-2
+          resize-none w-[45ch] md:w-[50vw] md:max-w-lg md:h-[30ch] py-2
           focus:ring-indigo-500 
           focus:border-indigo-500 
           block 
