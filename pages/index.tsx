@@ -59,19 +59,28 @@ export default function Home({ data }) {
   );
 }
 export async function getStaticProps() {
-  const res = await fetch(
-    "https://www.sent-complain.vercel.com/api/complaints",
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  const data = await res.json();
-  const type_options = data ? data.type_options : ["Complain", "Suggest"];
-  const about_options = data
-    ? data.about_options
-    : ["Features", "Bugs", "Graphics", "Performance"];
-  return { type_options, about_options };
+  const data = {};
+  try {
+    const res = await fetch(
+      "https://www.sent-complain.vercel.com/api/complaints",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await res.json();
+    return {
+      props: { data },
+    };
+  } catch (e) {
+    const type_options = ["Complain", "Suggest"];
+    const about_options = ["Features", "Bugs", "Graphics", "Performance"];
+    const data = { type_options: type_options, about_options: about_options };
+
+    return {
+      props: { data },
+    };
+  }
 }
