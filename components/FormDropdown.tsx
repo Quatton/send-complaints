@@ -27,7 +27,9 @@ export default function FormDropdown({ options, name, side }: OptionProps) {
         required
       >
         {options.map((item) => (
-          <option value={item.toLowerCase()}>{item}</option>
+          <option key={item} value={item.toLowerCase()}>
+            {item}
+          </option>
         ))}
       </select>
     </div>

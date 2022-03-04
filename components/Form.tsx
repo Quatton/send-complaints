@@ -8,9 +8,9 @@ const submitComplain = (event: FormEvent<HTMLFormElement>) => {
   event.preventDefault();
 };
 
-export default function Form() {
-  const type_options = ["Complain", "Suggest"];
-  const about_options = ["Features", "Bugs", "Graphics", "Performance"];
+export default function Form({ data }) {
+  const type_options = data.type_options;
+  const about_options = data.about_options;
   return (
     <form onSubmit={submitComplain}>
       <div className="grid gap-2">

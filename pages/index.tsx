@@ -1,6 +1,6 @@
 import Form from "../components/Form";
 
-const Home = () => {
+export default function Home({ data }) {
   return (
     <div
       className="
@@ -29,7 +29,7 @@ const Home = () => {
           shadow-xl
         "
         >
-          <Form />
+          <Form data={data} />
         </div>
       </div>
       <div className="grid place-content-center gap-12 h-screen snap-start">
@@ -50,12 +50,28 @@ const Home = () => {
         >
           <div className="container">
             <h1 className="text-center text-5xl font-bold bg-gradient-to-br from-sky-400 to-indigo-400 bg-clip-text text-transparent">
-              //TODO
+              {"//"}TODO
             </h1>
           </div>
         </div>
       </div>
     </div>
   );
-};
-export default Home;
+}
+export async function getStaticProps() {
+  const res = await fetch(
+    "https://www.sent-complain.vercel.com/api/complaints",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const data = await res.json();
+  const type_options = data ? data.type_options : ["Complain", "Suggest"];
+  const about_options = data
+    ? data.about_options
+    : ["Features", "Bugs", "Graphics", "Performance"];
+  return { type_options, about_options };
+}
