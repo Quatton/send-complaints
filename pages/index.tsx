@@ -59,8 +59,14 @@ export default function Home({ data }) {
   );
 }
 export async function getStaticProps() {
-  const res = await fetch("https://send-complain.vercel.app/api/option");
-  const json = await res.json();
+  let json;
+  try {
+    const res = await fetch("https://send-complain.vercel.app/api/option");
+    const json = await res.json();
+  } catch {
+    console.error("error fetching");
+  }
+
   const data = json
     ? {
         type_options: Object.keys(json.type_options),
