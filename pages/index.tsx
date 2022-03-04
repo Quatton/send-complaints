@@ -61,15 +61,12 @@ export default function Home({ data }) {
 export async function getStaticProps() {
   const data = {};
   try {
-    const res = await fetch(
-      "https://www.sent-complain.vercel.com/api/complaints",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const res = await fetch("https://send-complain.vercel.app/api/complaints", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const data = await res.json();
     return {
       props: { data },
