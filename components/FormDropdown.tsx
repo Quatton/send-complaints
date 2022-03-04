@@ -17,6 +17,7 @@ export default function FormDropdown({ options, name, side }: OptionProps) {
         focus:border-indigo-500 
         flex-1 font-medium
         rounded-${side}md 
+        w-full
         md:w-full
         sm:text-sm 
         shadow-md

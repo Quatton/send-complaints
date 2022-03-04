@@ -1,7 +1,6 @@
-import { NextPage } from "next";
 import Form from "../components/Form";
 
-const Home: NextPage = () => {
+const Home = () => {
   return (
     <div
       className="
@@ -36,8 +35,8 @@ const Home: NextPage = () => {
       <div className="grid place-content-center gap-12 h-screen snap-start">
         <div
           className="
-          w-[75vw]
-          h-[75vw]
+          w-[75vh]
+          h-[75vh]
           md:w-[32rem]
           md:h-[32rem]
           grid

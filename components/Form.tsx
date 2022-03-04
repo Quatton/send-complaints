@@ -8,16 +8,27 @@ const submitComplain = (event: FormEvent<HTMLFormElement>) => {
   event.preventDefault();
 };
 
-export default function Form({ options, width, height }: FormProps) {
+export default function Form() {
   const type_options = ["Complain", "Suggest"];
   const about_options = ["Features", "Bugs", "Graphics", "Performance"];
   return (
     <form onSubmit={submitComplain}>
-      <div className="flex flex-col gap-2">
-        <div className="flex flex-col gap-2">
-          <FormDropdown options={options} />
-          <FormTextField width={width} height={height} />
+      <div className="grid gap-2">
+        <FormTitle />
+        <div className="flex justify-between">
+          <FormDropdown side="" name="complain-type" options={type_options} />
+          <span
+            className="
+              text-gray-500
+              sm:text-sm inline-flex px-2
+              items-center justify-center
+              "
+          >
+            About
+          </span>
+          <FormDropdown side="" name="complain-about" options={about_options} />
         </div>
+        <FormTextField />
         <div className="text-center">
           <FormButton text="Submit" />
         </div>

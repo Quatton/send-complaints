@@ -9,11 +9,6 @@ const notion = new Client({ auth: process.env.NOTION_KEY });
 const database_id: string = process.env.NOTION_DATABASE_ID
   ? process.env.NOTION_DATABASE_ID
   : "please specify a database";
-const type_id = process.env.NOTION_TYPE_ID || "trust me it's string";
-const desc_id = process.env.NOTION_DESCRIPTION_ID || "trust me it's string";
-const about_id = process.env.NOTION_ABOUT_ID || "trust me it's string";
-const vote_id = process.env.NOTIONNOTION_VOTES_ID || "trust me it's string";
-const status_id = process.env.NOTION_STATUS_ID || "trust me it's string";
 
 async function getOptions() {
   const database = await notion.databases.retrieve({
