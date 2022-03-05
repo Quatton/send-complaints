@@ -9,24 +9,24 @@ const database_id = process.env.NOTION_DATABASE_ID
   ? process.env.NOTION_DATABASE_ID
   : "please specify a database";
 
-export async function getOptions() {
+export async function getOptions(options_arr) {
   const database = await notion.databases.retrieve({
     database_id: database_id,
   });
 
   const properties = database.properties;
-  const [type_options, about_options] = ["Type", "About"].map((e) =>
+  const [type_options, about_options, status_options] = options_arr.map((e) =>
     properties[e]["select"].options.reduce((obj, property) => {
       const { name, ...rest } = property;
       return { ...obj, [name]: rest };
     }, {})
   );
 
-  return { type_options, about_options };
+  return { type_options, about_options, status_options };
 }
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
-    getOptions().then(res.json);
+    getOptions(["Type", "About"]).then(res.json);
   }
 }
