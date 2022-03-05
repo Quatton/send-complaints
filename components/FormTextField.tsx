@@ -5,7 +5,7 @@ export default function FormTextField() {
       name="desc"
       placeholder="Feel free to express your opinion!"
       className={`
-          resize-none w-full md:max-w-lg h-[20ch] landscape:h-[10ch] py-2
+          resize-none w-full h-[20ch] landscape:h-[10ch] py-2
           focus:ring-indigo-500 
           focus:border-indigo-500 
           block 
