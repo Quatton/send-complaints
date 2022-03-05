@@ -16,11 +16,13 @@ export default function Button({ text }: ButtonProps) {
         transition-colors
         hover:from-indigo-400
         hover:to-sky-400
+        active:from-indigo-400
+        activer:to-sky-400
         ease-in-out
         duration-1000
         inline-flex justify-center 
         border border-transparent 
-        text-sm font-medium rounded-md 
+        text-lg font-medium rounded-md 
         text-white 
         focus:outline-none 
         focus:ring-2 

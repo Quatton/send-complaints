@@ -30,12 +30,12 @@ export default function Home({ optionData, boardData }: Data) {
     "
     >
       <div
-        id="up"
+        id="send-complaints"
         className="relative grid place-content-center gap-12 h-screen max-w-5 snap-start"
       >
         <div className="container">
           <h1 className="text-center p-2 text-5xl sm:text-6xl font-bold bg-gradient-to-br from-sky-400 to-indigo-400 bg-clip-text text-transparent">
-            send-complain
+            send-complaints
           </h1>
         </div>
         <div
@@ -50,7 +50,7 @@ export default function Home({ optionData, boardData }: Data) {
         >
           <Form data={optionData} />
         </div>
-        <Link href="#down">
+        <Link href="#voting-page">
           <a
             className="text-md font-light text-white text-center absolute animate-pulse bg-gradient-to-b
       from-white/0
@@ -58,16 +58,16 @@ export default function Home({ optionData, boardData }: Data) {
           >
             <span className="relative top-1/2 translate-y-1/2">
               To voting-page!
-              <i className="absolute -bottom-3 left-1/2  arrow down"></i>
+              <i className="absolute -bottom-3 right-1/2 arrow down"></i>
             </span>
           </a>
         </Link>
       </div>
       <div
-        id="down"
+        id="voting-page"
         className="text-md relative grid place-content-center gap-6 h-screen max-w-5 snap-start"
       >
-        <Link href="#up">
+        <Link href="#send-complaints">
           <a
             className="font-light text-white text-center absolute animate-pulse bg-gradient-to-t
       from-white/0
@@ -75,7 +75,7 @@ export default function Home({ optionData, boardData }: Data) {
           >
             <span className="relative top-1/4 -translate-y-1/2">
               <i className="absolute -top-2 right-1/2 arrow up"></i>
-              To send-complain!
+              To send-complaints!
             </span>
           </a>
         </Link>
@@ -116,7 +116,7 @@ export default function Home({ optionData, boardData }: Data) {
 export async function getServerSideProps() {
   let board_json;
   try {
-    const res = await fetch("https://send-complain.vercel.app/api/complaint");
+    const res = await fetch("https://send-complain.vercel.app/api/complaints");
     board_json = await res.json();
   } catch {
     console.error("error fetching board");

@@ -97,17 +97,27 @@ async function getComp() {
   const notionPages = await notion.databases.query({
     database_id: database_id,
     filter: {
-      or: [
+      and: [
         {
-          property: "Status",
-          select: {
-            equals: "Developing",
-          },
+          or: [
+            {
+              property: "Status",
+              select: {
+                equals: "Developing",
+              },
+            },
+            {
+              property: "Status",
+              select: {
+                equals: "Voting",
+              },
+            },
+          ],
         },
         {
-          property: "Status",
-          select: {
-            equals: "Voting",
+          property: "Votes",
+          number: {
+            is_not_empty: true,
           },
         },
       ],
@@ -130,9 +140,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       .catch(res.json);
   } else {
     getComp()
-      .then((data) =>
+      .then((data) => {
         res.json(
           data.results.map((page) => {
+            console.log(page);
             const { Description, Title, Votes, About, Status } =
               page.properties;
             const id = page.id;
@@ -143,8 +154,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             const status = Status["select"].name;
             return { id, title, desc, votes, about, status };
           })
-        )
-      )
+        );
+      })
       .catch(res.json);
   }
 }

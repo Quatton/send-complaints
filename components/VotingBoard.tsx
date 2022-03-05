@@ -14,7 +14,7 @@ export default function Form({ data }) {
           <h1>{card.title}</h1>
         </div>
 
-        <div className="text-sm sm:text-lg flex h-full items-center w-full bg-gray-700 rounded-b-xl p-2">
+        <div className="justify-center text-sm sm:text-lg flex h-full items-center w-full bg-gray-700 rounded-b-xl p-2">
           <p>{card.desc}</p>
         </div>
       </div>
