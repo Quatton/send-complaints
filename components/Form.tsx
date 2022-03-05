@@ -27,7 +27,7 @@ export default function Form({ data }) {
   const about_options = data.about_options;
   return (
     <form onSubmit={submitComplain}>
-      <div className="grid gap-2">
+      <div className="grid gap-2 landscape:grid-cols-2">
         <FormTitle />
         <div className="flex justify-between">
           <FormDropdown side="" name="type" options={type_options} />
@@ -40,10 +40,13 @@ export default function Form({ data }) {
           >
             About
           </span>
+
           <FormDropdown side="" name="about" options={about_options} />
         </div>
-        <FormTextField />
-        <div className="text-center">
+        <div className="landscape:col-span-2">
+          <FormTextField />
+        </div>
+        <div className="text-center landscape:col-span-2">
           <FormButton text="Submit" />
         </div>
       </div>

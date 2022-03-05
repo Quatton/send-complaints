@@ -31,10 +31,10 @@ export default function Home({ optionData, boardData }: Data) {
     >
       <div
         id="send-complaints"
-        className="relative grid place-content-center gap-12 h-screen max-w-5 snap-start"
+        className="relative grid place-content-center gap-12 landscape:gap-3 h-screen max-w-5 snap-start"
       >
         <div className="container">
-          <h1 className="text-center p-2 text-5xl sm:text-6xl font-bold bg-gradient-to-br from-sky-400 to-indigo-400 bg-clip-text text-transparent">
+          <h1 className="text-center p-2 landscape:text-3xl text-5xl sm:text-6xl font-bold bg-gradient-to-br from-sky-400 to-indigo-400 bg-clip-text text-transparent">
             send-complaints
           </h1>
         </div>
@@ -52,60 +52,38 @@ export default function Home({ optionData, boardData }: Data) {
         </div>
         <Link href="#voting-page">
           <a
-            className="text-md font-light text-white text-center absolute animate-pulse bg-gradient-to-b
+            className="text-sm font-light text-white text-center absolute animate-pulse bg-gradient-to-b
       from-white/0
-      to-white/10 bottom-0 w-full h-[8rem]"
+      to-white/10 bottom-0 w-full h-[6rem] landscape:h-[4rem]"
           >
-            <span className="relative top-1/2 translate-y-1/2">
+            <span className="relative top-1/2 translate-y-1/2 landscape:top-1/4">
               To voting-page!
-              <i className="absolute -bottom-3 right-1/2 arrow down"></i>
+              <i className="absolute -bottom-3 right-1/2 arrow rotate-[45deg]"></i>
             </span>
           </a>
         </Link>
       </div>
       <div
         id="voting-page"
-        className="text-md relative grid place-content-center gap-6 h-screen max-w-5 snap-start"
+        className="overflow-y-hidden text-md relative grid place-content-center gap-6 landscape:gap-1 h-screen max-w-5 snap-start"
       >
         <Link href="#send-complaints">
           <a
-            className="font-light text-white text-center absolute animate-pulse bg-gradient-to-t
+            className="text-sm font-light text-white text-center absolute animate-pulse bg-gradient-to-t
       from-white/0
-      to-white/10 top-0 w-full h-[8rem]"
+      to-white/10 top-0 w-full h-[6rem] landscape:h-[4rem] "
           >
             <span className="relative top-1/4 -translate-y-1/2">
-              <i className="absolute -top-2 right-1/2 arrow up"></i>
+              <i className=" absolute -top-2 right-1/2 arrow rotate-[-135deg]"></i>
               To send-complaints!
             </span>
           </a>
         </Link>
 
         <div className="container">
-          <h1 className=" text-center p-2 text-3xl sm:text-6xl font-bold bg-gradient-to-br from-sky-400 to-indigo-400 bg-clip-text text-transparent">
+          <h1 className="text-center landscape:text-3xl p-2 text-3xl sm:text-6xl font-bold bg-gradient-to-br from-sky-400 to-indigo-400 bg-clip-text text-transparent">
             voting-page
           </h1>
-        </div>
-        <div
-          className="
-          w-[32rem]
-          h-[32rem]
-          md:w-[32rem]
-          md:h-[32rem]
-          grid
-          gap-6
-          place-items-center
-          p-3
-          text-gray-300
-          bg-gray-800
-          rounded-xl
-          shadow-xl
-          overflow-y-auto
-          snap-mandatory
-          scrollbar-track-transparent
-          scrollbar-thumb-transparent
-          text-center
-        "
-        >
           <VotingBoard data={boardData} />
         </div>
       </div>
