@@ -1,4 +1,5 @@
 import { AppProps } from "next/app";
+import { PropsWithChildren } from "react";
 import Form from "../components/Form";
 import VotingBoard from "../components/VotingBoard";
 import Link from "next/link";
@@ -15,7 +16,8 @@ interface Data extends AppProps {
   optionData: Object;
   boardData: Array<CardData>;
 }
-export default function Home({ optionData, boardData }: Data) {
+
+const PageBG = (): PropsWithChildren => {
   return (
     <div
       className="
@@ -28,7 +30,13 @@ export default function Home({ optionData, boardData }: Data) {
       snap-mandatory
       snap-y
     "
-    >
+    ></div>
+  );
+};
+
+export default function Home({ optionData, boardData }: Data) {
+  return (
+    <PageBG>
       <div
         id="send-complaints"
         className="relative grid place-content-center gap-12 landscape:gap-3 h-screen max-w-5 snap-start"
@@ -54,7 +62,7 @@ export default function Home({ optionData, boardData }: Data) {
           <a
             className="text-sm font-light text-white text-center absolute animate-pulse bg-gradient-to-b
       from-white/0
-      to-white/10 bottom-0 w-full md:h-[6rem] landscape:h-[4rem]"
+      to-white/10 bottom-0 w-full h-[6rem] landscape:h-[4rem]"
           >
             <span className="relative top-1/2 translate-y-1/2 landscape:top-1/4">
               To voting-page!
@@ -71,7 +79,7 @@ export default function Home({ optionData, boardData }: Data) {
           <a
             className="text-sm font-light text-white text-center absolute animate-pulse bg-gradient-to-t
       from-white/0
-      to-white/10 top-0 w-full md:h-[6rem] landscape:h-[4rem] "
+      to-white/10 top-0 w-full h-[6rem] landscape:h-[4rem] "
           >
             <span className="relative top-1/4 -translate-y-1/2">
               <i className=" absolute -top-2 right-1/2 arrow rotate-[-135deg]"></i>
@@ -87,16 +95,14 @@ export default function Home({ optionData, boardData }: Data) {
           <VotingBoard data={boardData} />
         </div>
       </div>
-    </div>
+    </PageBG>
   );
 }
 
 export async function getServerSideProps() {
   let board_json;
   try {
-    const res = await fetch(
-      "https://send-complaints.vercel.app/api/complaints"
-    );
+    const res = await fetch("https://send-complain.vercel.app/api/complaints");
     board_json = await res.json();
   } catch {
     console.error("error fetching board");
@@ -117,7 +123,7 @@ export async function getServerSideProps() {
 
   let option_json;
   try {
-    const res = await fetch("https://send-complaints.vercel.app/api/option");
+    const res = await fetch("https://send-complain.vercel.app/api/option");
     option_json = await res.json();
   } catch {
     console.error("error fetching options, using default settings");

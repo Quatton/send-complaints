@@ -43,7 +43,7 @@ export default function Form({ data }) {
 
           <FormDropdown side="" name="about" options={about_options} />
         </div>
-        <div className="lx:col-span-1 landscape:col-span-2">
+        <div className="landscape:col-span-2">
           <FormTextField />
         </div>
         <div className="text-center landscape:col-span-2">
