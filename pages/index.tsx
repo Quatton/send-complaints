@@ -36,7 +36,16 @@ const PageBG: FC = () => {
 
 export default function Home({ optionData, boardData }: Data) {
   return (
-    <PageBG>
+    <div
+      className="bg-gradient-to-b
+    from-gray-900
+    to-indigo-900
+    h-[100vh]
+    overflow-y-scroll
+    scroll-smooth
+    snap-mandatory
+    snap-y"
+    >
       <div
         id="send-complaints"
         className="relative grid place-content-center gap-12 landscape:gap-3 h-screen max-w-5 snap-start"
@@ -95,7 +104,7 @@ export default function Home({ optionData, boardData }: Data) {
           <VotingBoard data={boardData} />
         </div>
       </div>
-    </PageBG>
+    </div>
   );
 }
 
