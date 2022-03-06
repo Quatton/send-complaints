@@ -1,5 +1,5 @@
 import { AppProps } from "next/app";
-import { PropsWithChildren } from "react";
+import { FC } from "react";
 import Form from "../components/Form";
 import VotingBoard from "../components/VotingBoard";
 import Link from "next/link";
@@ -17,7 +17,7 @@ interface Data extends AppProps {
   boardData: Array<CardData>;
 }
 
-const PageBG = (): PropsWithChildren => {
+const PageBG: FC = () => {
   return (
     <div
       className="
